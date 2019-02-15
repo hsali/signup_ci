@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - 7.2
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - cp .env.testing .env
+  - composer install --no-interaction
+  - composer dump-autoload
+
+script:
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
